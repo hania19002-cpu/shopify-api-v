@@ -3623,11 +3623,14 @@ func handleCheck(w http.ResponseWriter, r *http.Request) {
         }
 
         // @mod_by_kamal
-        site := pickSite()
-        if site == "" {
-                jsonResp(w, 503, map[string]string{"error": "No sites loaded"})
-                return
-        }
+site := r.URL.Query().Get("site")
+if site == "" {
+	site = pickSite()
+}
+if site == "" {
+	jsonResp(w, 503, map[string]string{"error": "No sites provided"})
+	return
+}
 
         // ── Overall card deadline: 50s ────────────────────────────────────────────
         // Bot VPS timeout = 75s. We abort at 50s so Go returns a clean 504 response
