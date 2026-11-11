@@ -3929,7 +3929,7 @@ func handleStats(w http.ResponseWriter, r *http.Request) {
 
 func main() {
         // ── Raise file descriptor limit (Linux only, no-op on other OS) ─────────
-        raiseNofileLimit()
+       // raiseNofileLimit()
 
         // ── Use all CPU cores ───────────────────────────────────────────────────
         runtime.GOMAXPROCS(runtime.NumCPU())
